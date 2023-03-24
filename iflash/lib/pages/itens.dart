@@ -62,7 +62,7 @@ class _PageItensState extends State<PageItens> {
             children: [
               SizedBox(
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 8, left: 60),
+                  padding: const EdgeInsets.only(top: 8, left: 60, bottom: 20),
                   child: Center(
                     child: Image.asset(
                       'assets/img/Mango.png',
@@ -417,7 +417,14 @@ class _PageItensState extends State<PageItens> {
                         context,
                         MaterialPageRoute(
                           builder: (contextquantidade) => const PageCarrinho(),
-                          settings: RouteSettings(arguments: quantidade ),
+                          settings: RouteSettings(arguments: quantidade),
+                        ),
+                      );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (contextpreco) => const PageCarrinho(),
+                          settings: RouteSettings(arguments: preco),
                         ),
                       );
                     },
