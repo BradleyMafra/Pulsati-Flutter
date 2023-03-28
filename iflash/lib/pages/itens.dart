@@ -12,7 +12,6 @@ class PageItens extends StatefulWidget {
 class _PageItensState extends State<PageItens> {
   bool foiClicado = false;
   int quantidade = 0;
-  double preco = 2.0;
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +90,11 @@ class _PageItensState extends State<PageItens> {
                     child: IconButton(
                       onPressed: () {
                         setState(() {
-                          quantidade--;
+                          if(quantidade <= 0){
+                            quantidade = 0;
+                          }else{
+                            quantidade--;
+                          }
                         });
                       },
                       icon: const Padding(
@@ -108,11 +111,7 @@ class _PageItensState extends State<PageItens> {
                     height: 100,
                     width: 70,
                     child: ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          quantidade++;
-                        });
-                      },
+                      onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         elevation: 0,
                         backgroundColor: quantidade > 0
@@ -123,7 +122,7 @@ class _PageItensState extends State<PageItens> {
                         ),
                       ),
                       child: Text(
-                        quantidade.toString(),
+                        '$quantidade',
                         style: const TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.w600,
@@ -418,13 +417,6 @@ class _PageItensState extends State<PageItens> {
                         MaterialPageRoute(
                           builder: (contextquantidade) => const PageCarrinho(),
                           settings: RouteSettings(arguments: quantidade),
-                        ),
-                      );
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (contextpreco) => const PageCarrinho(),
-                          settings: RouteSettings(arguments: preco),
                         ),
                       );
                     },
