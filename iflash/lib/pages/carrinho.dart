@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iflash/pages/home.dart';
 
 class PageCarrinho extends StatefulWidget {
   const PageCarrinho({super.key});
@@ -8,15 +9,18 @@ class PageCarrinho extends StatefulWidget {
 }
 
 class _PageCarrinhoState extends State<PageCarrinho> {
-  int quantidade = 0;
-  int quantidadeN = 0;
-  double preco = 0.0;
+  double precoBanana = 4.0;
+  int quantidadeBanana = 0;
+  double precoSweer = 1.20;
+  int quantidadeSweer = 0;
+  double subTotal = 0.0;
+  double total = 0.0;
+  double teste = 0.0;
 
   @override
   Widget build(BuildContext context) {
-    // quantidade = ModalRoute.of(context)!.settings.arguments as int;
-    // preco = ModalRoute.of(context)!.settings.arguments as double;
-    quantidadeN = quantidade;
+    // total = (precoBanana * quantidadeBanana) + (precoSweer * quantidadeSweer);
+    subTotal = (precoBanana * quantidadeBanana) + (precoSweer * quantidadeSweer);
 
     return Scaffold(
       appBar: AppBar(
@@ -39,6 +43,7 @@ class _PageCarrinhoState extends State<PageCarrinho> {
           },
         ),
       ),
+
       body: Column(
         children: [
           Row(
@@ -64,13 +69,15 @@ class _PageCarrinhoState extends State<PageCarrinho> {
               child: Card(
                 child: Row(
                   children: [
-                    const SizedBox(width: 10),
+                    const SizedBox(
+                      width: 10,
+                    ),
                     Container(
                       decoration: BoxDecoration(
                         color: const Color.fromARGB(255, 248, 250, 152),
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: Image.asset('assets/img/Mango.png',
+                      child: Image.asset('assets/img/Bunch_of_Bananas.png',
                           width: 100, height: 100),
                     ),
                     Card(
@@ -81,7 +88,7 @@ class _PageCarrinhoState extends State<PageCarrinho> {
                           const Padding(
                             padding: EdgeInsets.only(left: 8, top: 10),
                             child: Text(
-                              'Banana',
+                              'Bananas',
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 20,
@@ -91,7 +98,7 @@ class _PageCarrinhoState extends State<PageCarrinho> {
                           ),
                           const SizedBox(height: 8),
                           const Padding(
-                            padding: EdgeInsets.only(right: 12),
+                            padding: EdgeInsets.only(right: 30),
                             child: Text(
                               'Fruits',
                               style: TextStyle(
@@ -105,7 +112,7 @@ class _PageCarrinhoState extends State<PageCarrinho> {
                           Row(
                             children: [
                               Text(
-                                quantidadeN.toString(),
+                                '$quantidadeBanana',
                                 style: const TextStyle(
                                   color: Colors.black,
                                   fontSize: 20,
@@ -113,7 +120,7 @@ class _PageCarrinhoState extends State<PageCarrinho> {
                                 ),
                               ),
                               const Padding(
-                                padding: EdgeInsets.only(right: 20),
+                                padding: EdgeInsets.only(right: 40),
                                 child: Text(
                                   'pc',
                                   style: TextStyle(
@@ -131,18 +138,26 @@ class _PageCarrinhoState extends State<PageCarrinho> {
                     Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(left: 60, top: 20),
+                          padding: const EdgeInsets.only(left: 40, top: 20),
                           child: Row(
                             children: [
+                              const SizedBox(
+                                width: 10,
+                              ),
                               Container(
                                 decoration: BoxDecoration(
-                                  color: const Color.fromARGB(146, 202, 201, 199),
+                                  color:
+                                      const Color.fromARGB(146, 202, 201, 199),
                                   borderRadius: BorderRadius.circular(50),
                                 ),
                                 child: IconButton(
                                   onPressed: () {
                                     setState(() {
-                                      quantidadeN--;
+                                      if (quantidadeBanana <= 0) {
+                                        quantidadeBanana = 0;
+                                      } else {
+                                        quantidadeBanana--;
+                                      }
                                     });
                                   },
                                   icon: const Icon(
@@ -156,13 +171,14 @@ class _PageCarrinhoState extends State<PageCarrinho> {
                               const SizedBox(width: 10),
                               Container(
                                 decoration: BoxDecoration(
-                                  color: const Color.fromARGB(146, 210, 142, 255),
+                                  color:
+                                      const Color.fromARGB(146, 210, 142, 255),
                                   borderRadius: BorderRadius.circular(50),
                                 ),
                                 child: IconButton(
                                   onPressed: () {
                                     setState(() {
-                                      quantidadeN++;
+                                      quantidadeBanana++;
                                     });
                                   },
                                   icon: const Icon(
@@ -170,11 +186,27 @@ class _PageCarrinhoState extends State<PageCarrinho> {
                                     color: Colors.black,
                                     size: 30,
                                   ),
+                                  splashColor: Colors.green,
                                 ),
                               ),
                             ],
                           ),
-                        )
+                        ),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 16, left: 40),
+                              child: Text(
+                                'U\$ ${precoBanana * quantidadeBanana}',
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w800,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ],
                     )
                   ],
@@ -237,7 +269,7 @@ class _PageCarrinhoState extends State<PageCarrinho> {
                           Row(
                             children: [
                               Text(
-                                quantidadeN.toString(),
+                                '$quantidadeSweer',
                                 style: const TextStyle(
                                   color: Colors.black,
                                   fontSize: 20,
@@ -271,13 +303,18 @@ class _PageCarrinhoState extends State<PageCarrinho> {
                               ),
                               Container(
                                 decoration: BoxDecoration(
-                                  color: const Color.fromARGB(146, 202, 201, 199),
+                                  color:
+                                      const Color.fromARGB(146, 202, 201, 199),
                                   borderRadius: BorderRadius.circular(50),
                                 ),
                                 child: IconButton(
                                   onPressed: () {
                                     setState(() {
-                                      quantidadeN--;
+                                      if (quantidadeSweer <= 0) {
+                                        quantidadeSweer = 0;
+                                      } else {
+                                        quantidadeSweer--;
+                                      }
                                     });
                                   },
                                   icon: const Icon(
@@ -291,13 +328,14 @@ class _PageCarrinhoState extends State<PageCarrinho> {
                               const SizedBox(width: 10),
                               Container(
                                 decoration: BoxDecoration(
-                                  color: const Color.fromARGB(146, 210, 142, 255),
+                                  color:
+                                      const Color.fromARGB(146, 210, 142, 255),
                                   borderRadius: BorderRadius.circular(50),
                                 ),
                                 child: IconButton(
                                   onPressed: () {
                                     setState(() {
-                                      quantidadeN++;
+                                      quantidadeSweer++;
                                     });
                                   },
                                   icon: const Icon(
@@ -305,11 +343,26 @@ class _PageCarrinhoState extends State<PageCarrinho> {
                                     color: Colors.black,
                                     size: 30,
                                   ),
+                                  splashColor: Colors.green,
                                 ),
                               ),
                             ],
                           ),
-                        )
+                        ),
+                        Row(
+                          children: [
+                            Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 40, top: 16),
+                                child: Text(
+                                    'U\$ ${(precoSweer * quantidadeSweer).toStringAsFixed(2)}',
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w800,
+                                    ))),
+                          ],
+                        ),
                       ],
                     )
                   ],
@@ -357,15 +410,104 @@ class _PageCarrinhoState extends State<PageCarrinho> {
                       ),
                     ),
                     const SizedBox(width: 40),
-                    const Text('Promo Code',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w800,
-                        )),
+                    const Text(
+                      'Promo Code',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
                     const SizedBox(width: 40),
+                    // Validar o promo code para aplicar o desconto.
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            String codigoInserido = '';
+                            return AlertDialog(
+                              title: const Text('Put your promo code here'),
+                              content: TextField(
+                                decoration: const InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  labelText: 'Promo Code',
+                                ),
+                                onChanged: ((value) {
+                                  codigoInserido = value;
+                                }),
+                              ),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text(
+                                    'Cancel',
+                                    style: TextStyle(color: Colors.red),
+                                  ),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                    if (codigoInserido == 'Pulsati' ||
+                                        codigoInserido == 'a') {
+                                      setState(() {
+                                        total = subTotal - 10;
+                                      });
+                                      showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title: const Text(
+                                                'Promo Code Applied',
+                                                style: TextStyle(
+                                                  color: Colors.green,
+                                                ),
+                                              ),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  child: const Text('Ok'),
+                                                ),
+                                              ],
+                                            );
+                                          });
+                                    } else {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: const Text(
+                                              'Invalid Promo Code',
+                                              style: TextStyle(
+                                                color: Colors.red,
+                                              ),
+                                            ),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                                child: const Text('Ok'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    }
+                                  },
+                                  child: const Text('Apply',
+                                    style: TextStyle(color: Colors.green),
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
                       child: Container(
                         width: 100,
                         height: 50,
@@ -403,7 +545,7 @@ class _PageCarrinhoState extends State<PageCarrinho> {
                       const Padding(
                         padding: EdgeInsets.only(left: 10),
                         child: Text(
-                          'Subtotal',
+                          'Subtotal:',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 24,
@@ -412,9 +554,9 @@ class _PageCarrinhoState extends State<PageCarrinho> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 200),
+                        padding: const EdgeInsets.only(left: 150),
                         child: Text(
-                          '$preco',
+                          'U\$ ${subTotal.toStringAsFixed(2)}',
                           style: const TextStyle(
                             color: Colors.black,
                             fontSize: 20,
@@ -430,7 +572,7 @@ class _PageCarrinhoState extends State<PageCarrinho> {
                       Padding(
                         padding: EdgeInsets.only(left: 10),
                         child: Text(
-                          'Delivery Fee',
+                          'Delivery Fee:',
                           style: TextStyle(
                             color: Color.fromARGB(113, 133, 133, 133),
                             fontSize: 20,
@@ -439,7 +581,7 @@ class _PageCarrinhoState extends State<PageCarrinho> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(left: 180),
+                        padding: EdgeInsets.only(left: 170),
                         child: Text(
                           'Free',
                           style: TextStyle(
@@ -457,7 +599,7 @@ class _PageCarrinhoState extends State<PageCarrinho> {
                       const Padding(
                         padding: EdgeInsets.only(left: 10),
                         child: Text(
-                          'Total',
+                          'Total:',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 20,
@@ -466,9 +608,9 @@ class _PageCarrinhoState extends State<PageCarrinho> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 250),
+                        padding: const EdgeInsets.only(left: 200),
                         child: Text(
-                          '$preco',
+                          'U\$ ${total.toStringAsFixed(2)}',
                           style: const TextStyle(
                             color: Colors.black,
                             fontSize: 20,
@@ -480,7 +622,30 @@ class _PageCarrinhoState extends State<PageCarrinho> {
                   ),
                   const SizedBox(height: 40),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                                title: const Text('Order Placed'),
+                                content:
+                                    const Text('Your order has been placed.'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const HomePage(),
+                                        ),
+                                      );
+                                    },
+                                    child: const Text('Ok'),
+                                  ),
+                                ]);
+                          });
+                    },
                     child: Container(
                       width: 300,
                       height: 60,
