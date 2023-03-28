@@ -15,6 +15,7 @@ class PageHome extends StatelessWidget {
             onPressed: () {},
             icon: const Icon(Icons.chevron_left),
           ),
+          
           title: const Text('Convert'),
           centerTitle: true,
           actions: [
