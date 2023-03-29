@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gradient_borders/gradient_borders.dart';
 
 class PageHome extends StatelessWidget {
   const PageHome({super.key});
@@ -15,7 +16,6 @@ class PageHome extends StatelessWidget {
             onPressed: () {},
             icon: const Icon(Icons.chevron_left),
           ),
-          
           title: const Text('Convert'),
           centerTitle: true,
           actions: [
@@ -98,7 +98,7 @@ class PageHome extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  color: const Color.fromARGB(255, 207, 83, 0),
+                  color: const Color.fromARGB(255, 245, 120, 18),
                   child: const Align(
                     child: Text(
                       '\$',
@@ -118,7 +118,7 @@ class PageHome extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  color: const Color.fromARGB(255, 207, 83, 0),
+                  color: const Color.fromARGB(255, 245, 120, 18),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -455,7 +455,7 @@ class PageHome extends StatelessWidget {
                   child: const Text(
                     '.',
                     style: TextStyle(
-                      fontSize: 40,
+                      fontSize: 80,
                       color: Colors.white,
                       fontWeight: FontWeight.w300,
                     ),
@@ -463,28 +463,17 @@ class PageHome extends StatelessWidget {
                 ),
                 const SizedBox(width: 2), //Espaçamento horizontal
                 //Terceiro botão (botão de apagar)
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    backgroundColor: Colors.transparent,
-                  ),
-                  child: Ink(
-                    width: 90,
-                    height: 90,
-                    decoration: BoxDecoration(
-                      gradient:const LinearGradient(
-                        colors: <Color>[
-                          Color.fromARGB(255, 207, 83, 0),
-                          Color.fromARGB(255, 243, 152, 91),
-                        ],
-                        begin: Alignment.topLeft,
-                        end: Alignment.topRight,
+                SizedBox(
+                  height: 95,
+                  width: 95,
+                  child: ElevatedButton(
+                    style: OutlinedButton.styleFrom(
+                      backgroundColor:const Color.fromARGB(255, 245, 120, 18),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                      borderRadius: BorderRadius.circular(15),
                     ),
+                    onPressed: () {},
                     child: IconButton(
                       icon: const Icon(Icons.arrow_outward_rounded),
                       color: Colors.white,
@@ -497,7 +486,6 @@ class PageHome extends StatelessWidget {
           ),
         ],
       ),
-
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: const Color.fromARGB(255, 26, 25, 25),
         items: [
@@ -511,26 +499,22 @@ class PageHome extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             icon: Container(
+              height: 45,
+              width: 45,
               padding: const EdgeInsets.all(8.0),
               decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                gradient: const LinearGradient(
-                  colors: [
-                    Colors.yellow,
-                    Colors.green,
-                    Colors.blue,
-                    Colors.purple,
-                    Colors.orange,
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  stops: [0.0, 0.25, 0.5, 0.75, 1.0],
+                border: const GradientBoxBorder(
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.yellow,
+                      Colors.green,
+                      Colors.blue,
+                      Colors.purple,
+                      Colors.orange,
+                    ],
+                  ),
                 ),
-                border: Border.all(
-                  width: 3,
-                  style: BorderStyle.solid,
-                  color: Colors.transparent,
-                ),
+                borderRadius: BorderRadius.circular(50),
               ),
               child: const Icon(Icons.arrow_outward_outlined),
             ),
