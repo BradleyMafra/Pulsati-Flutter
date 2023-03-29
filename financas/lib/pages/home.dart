@@ -1,5 +1,4 @@
 import 'package:financas/pages/entradas.dart';
-import 'package:financas/routes.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
