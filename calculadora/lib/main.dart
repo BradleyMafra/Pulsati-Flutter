@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor:Colors.black, // define a cor de fundo
           selectedItemColor: Color.fromARGB(200, 68, 67, 67),
-          unselectedItemColor: Color.fromARGB(200, 68, 67, 67),
+          unselectedItemColor: Color.fromARGB(199, 161, 161, 161),
         ),
       ),
       home: const PageHome(),
